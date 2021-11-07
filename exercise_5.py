@@ -1,3 +1,5 @@
+import random
+
 DICE_WALLS = [3, 4, 6, 8, 10, 12, 20, 100]
 
 
@@ -127,15 +129,23 @@ def is_dice_type_correct(dice_type):
 
 
 def roll_the_dice(dice_parameters):
+    diced_nums = []
+    for i in range(int(dice_parameters['how_many_dice'])):
+        diced_nums.append(random.randint(1, dice_parameters['dice_type']))
+    print(f"Wylosowane liczby to: ")
+    result = 0
+    for i in diced_nums:
+        result += i
+        print(i)
     if dice_parameters['is_modification'] == "+":
         # print(type(dice_parameters['how_many_dice']))
         # print(type(dice_parameters['dice_type']))
         # print(type(dice_parameters['mod']))
-        print(f"Wynik rzutu kością wynosi: {str(int(dice_parameters['how_many_dice']) * dice_parameters['dice_type'] + dice_parameters['mod'])}")
+        print(f"Wynik rzutu kością (kośćmi) wynosi: {str(result + dice_parameters['mod'])}")
     elif dice_parameters['is_modification'] == "-":
-        print(f"Wynik rzutu kością wynosi: {str(int(dice_parameters['how_many_dice']) * dice_parameters['dice_type'] - dice_parameters['mod'])}")
+        print(f"Wynik rzutu kością (kośćmi) wynosi: {str(result - dice_parameters['mod'])}")
     else:
-        print(f"Wynik rzutu kością wynosi: {str(int(dice_parameters['how_many_dice']) * dice_parameters['dice_type'])}")
+        print(f"Wynik rzutu kością (kośćmi) wynosi: {str(result)}")
     return
 
 
